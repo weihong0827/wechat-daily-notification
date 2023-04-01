@@ -1,9 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
-import * as WEATHER_TYPES from "../types/weather";
-import * as REQUESTDATA_TYPES from "../types/requestData";
-import * as WECHAT_TYPES from "../types/wechat";
-import * as JUHE_TYPES from "../types/juhe";
+import * as WEATHER_TYPES from "../../../types/weather";
+import * as REQUESTDATA_TYPES from "../../../types/requestData";
+import * as WECHAT_TYPES from "../../../types/wechat";
+import * as JUHE_TYPES from "../../../types/juhe";
 
 export default async function handler(
   req: NextApiRequest,
