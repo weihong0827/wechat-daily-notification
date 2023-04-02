@@ -4,11 +4,9 @@ import * as WEATHER_TYPES from "../../../types/weather";
 import * as REQUESTDATA_TYPES from "../../../types/requestData";
 import * as WECHAT_TYPES from "../../../types/wechat";
 import * as JUHE_TYPES from "../../../types/juhe";
+import { NextResponse } from "next/server";
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export async function GET(req: NextApiRequest) {
   const requireData: REQUESTDATA_TYPES.RequiredData = await getRequiredData();
   const { englishQuote, token, zodiacResult, weather, dateObject } =
     requireData;
@@ -51,10 +49,9 @@ export default async function handler(
   let response = await sendContent(data, user, primary_template, url);
 
   if (response.data.errcode !== 0) {
-    res.status(400).json(response.data);
+    return NextResponse.json(response.data, { status: 400 });
   }
-
-  res.status(200).json(response.data);
+  return NextResponse.json(response.data, { status: 200 });
 }
 
 const sendContent = async (

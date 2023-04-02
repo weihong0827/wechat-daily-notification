@@ -1,6 +1,9 @@
-import type { NextApiRequest, NextApiResponse } from "next";
+import { NextResponse } from "next/server";
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  const echostr = req.query.echostr as string;
-  res.status(200).send(echostr);
+export function GET(req: Request) {
+  const { searchParams } = new URL(req.url);
+  const echostr = searchParams.get("echostr");
+  return NextResponse.json(echostr, {
+    status: 200,
+  });
 }
